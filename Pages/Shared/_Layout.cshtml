@@ -4,43 +4,53 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DT102G_moment1</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <!--CSS-->
+    <link rel="stylesheet" href="/css/site.css" asp-append-version="true" />
 </head>
-<body>
+@{
+    var site = @ViewData["Title"];
+}
+<body onload="setActiveClass('@site')">
+    <!--header-->
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">DT102G_moment1</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <a asp-page="/Index"><img id="logotype" src="~/images/logotyp.png" alt="Logotyp som föreställer en grön rektangel med texten Sandras Labb 1 i." /></a>
+        <!--date function-->
+        @{
+            var dateTime = DateTime.Now;
+            string date = DateTime.Now.ToString("dd MMMM yyyy");
+        }
+        <div id="header-right">
+            <p>Dagens datum är: @date</p>
+        </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <!--main section-->
+    <main role="main" class="container">
+        <aside class="aside">
+            <nav class="nav">
+                <ul>
+                    <li class="nav-item">
+                        <a id="start" class="nav-link" asp-area="" asp-page="/Index">Start</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="razor" class="nav-link" asp-area="" asp-page="/Razor">Razor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="about" class="nav-link" asp-area="" asp-page="/About">Om sidan</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <section class="section">
             @RenderBody()
-        </main>
-    </div>
+        </section>
+    </main>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - DT102G_moment1 - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    <footer class="footer">
+        <div class="footer-info">
+            <p>Av Sandra Andersson - Kontakta mig via e-post: <a href="mailto:saan1906@student.miun.se">saan1906@student.miun.se</a></p>
         </div>
     </footer>
-
+    <!--JS-->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

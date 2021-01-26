@@ -1,0 +1,57 @@
+﻿@page
+@model DT102G_moment1.Pages.RazorModel
+@{
+    ViewData["Title"] = "Razor";
+}
+
+<div class="content-wrapper">
+    <h1>Razor</h1>
+    <h2>Information</h2>
+    <!--get date, time and day-->
+    @{
+        var dateTime = DateTime.Now;
+        string date = DateTime.Now.ToString("dd MMMM yyyy");
+        string time = DateTime.Now.ToString("hh:mm");
+        string day = Convert.ToString(dateTime.DayOfWeek);
+    }
+
+    <!--Show date and time-->
+    <p><b>Datum/klockslag:</b> @date @time</p>
+
+    <!--Write if its monday or not-->
+    @if(day == "Monday")
+    {
+        <p>Idag är det måndag</p>
+    } else
+    {
+        <p>Idag är det inte måndag</p>
+    }
+
+    <!--list of read courses-->
+    @{ 
+        List<string> courses = new List<string>();
+        courses.Add("DT084G - Introduktion till programmering i JavaScript");
+        courses.Add("DT057G - Webbutveckling I");
+        courses.Add("DT163G - Digital bildbehandling för webb");
+        courses.Add("DT071G - Programmering i C#.NET");
+        courses.Add("DT003G - Databaser");
+        courses.Add("DT093G - Webbutveckling II");
+        courses.Add("DT152G - Webbdesign för CMS");
+        courses.Add("DT068G - Webbanvändbarhet");
+        courses.Add("DT173G - Webbutveckling III");
+        courses.Add("DT102G - ASP.NET med C#");
+        courses.Add("FT162G - Javascript-baserad webbutveckling");
+        courses.Add("GD008G - Typografi och form för webb");
+        courses.Add("IG021G - Affärsplaner och kommersialisering");
+        courses.Add("IK060G - Projektledning");
+    }
+
+    <!--Show read courses-->
+    <h2>Jag har läst eller håller på att läsa följande kurser</h2>
+    <ul class="courses">
+        @foreach (string course in courses)
+        {
+            <li>@course</li>
+        }
+    </ul>
+</div>
